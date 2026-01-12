@@ -2,11 +2,13 @@
 package tools;
 
 import java.util.Scanner;
+import model.Customer;
 
 public class Inputter {
     private Scanner ndl;
 
     public Inputter() {
+        this.ndl = new Scanner(System.in);
     }
 
     public Scanner getNdl() {
@@ -32,16 +34,27 @@ public class Inputter {
         return Double.parseDouble(tam);
     }
 
-    public String inputAndLoop(String mess, String pattern, boolean isLoop) {
-        String result = "";
+  
+
+    public String inputAndLoop(String mess, String partern){
         boolean more = true;
-        do {
+        String result="";
+        do{
             result = getString(mess);
-            more = !Acceptable.isValid(result, pattern);
-            if (more && (isLoop && result.length() > 0)) {
-                System.out.println("Data is invalid!. Re-enter...");
-            }
-        } while (isLoop && more);
-        return result.trim();
+            more = !Acceptable.isValid(result, partern);
+            
+            if(more)
+                System.out.println("Data if incorrect...");
+        } while(more);
+        return result;
+    }
+    
+    public Customer getCustomerInfo() {
+        Customer x = new Customer();
+        x.setId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID));
+        x.setName(inputAndLoop("Customer Name: ", Acceptable.NAME_VALID));
+        x.setPhone(inputAndLoop("Customer Phone: ", Acceptable.PHONE_VALID));
+        x.setEmail(inputAndLoop("Customer Email: ", Acceptable.EMAIL_VALID));
+        return x;
     }
 }

@@ -3,6 +3,7 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class Order {
@@ -85,4 +86,37 @@ public class Order {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
         return sdf.format(now);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.customerId);
+        hash = 83 * hash + Objects.hashCode(this.menuId);
+        hash = 83 * hash + Objects.hashCode(this.evenDate);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Order other = (Order) obj;
+        if (!Objects.equals(this.customerId, other.customerId)) {
+            return false;
+        }
+        if (!Objects.equals(this.menuId, other.menuId)) {
+            return false;
+        }
+        return Objects.equals(this.evenDate, other.evenDate);
+    }
+    
+    
+    
 }
