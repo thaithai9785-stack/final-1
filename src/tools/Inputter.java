@@ -20,6 +20,7 @@ public class Inputter {
         return this.ndl.nextLine();
     }
 
+    
     public int getInt(String mess) {
         int kq = 0;
         String tam = getString(mess);

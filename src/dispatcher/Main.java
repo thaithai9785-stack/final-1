@@ -8,11 +8,12 @@ import tools.Inputter;
 public class Main {
     public static void main(String[] args) {
         Inputter ndl = new Inputter();
-        int choice =0;
+        int choice = 0;
         Customers dskh = new Customers();
+        
         //--------làm menu---------//
         do {            
-            choice = ndl.getInt("\n========== FEAST ORDER MANAGEMENT ==========\n"
+            choice = ndl.getInt("\n---------------------------\n"
         + "1. Register customers.\n"
         + "2. Update customer information.\n"
         + "3. Search for customer information by name.\n"
@@ -51,7 +52,7 @@ public class Main {
                     System.out.println("Ban da chon chuc nang Hien Customer hoac Oder");
                     break;
                 default:
-                    throw new AssertionError();
+                    break;
             }
         } while (choice >= 1 && choice <=8);
     }
