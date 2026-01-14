@@ -30,9 +30,13 @@ public class Inputter {
         return kq;
     }
 
+    //thieu dieu kien
     public double getDouble(String mess) {
         String tam = getString(mess);
-        return Double.parseDouble(tam);
+        double kq=0;
+        if (Acceptable.isValid(tam, Acceptable.DOUBLE_VALID))
+            kq = Double.parseDouble(tam);
+        return kq;
     }
 
   
