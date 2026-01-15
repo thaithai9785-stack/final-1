@@ -53,7 +53,7 @@ public class Customer {
     @Override
     public String toString() {
         //return "Customer{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + '}';
-        return String.format("|%-5s |%-25s |%-10s |%-30s", this.id, this.name, this.phone, this.email);
+        return String.format("|%-5s |%-25s |%-10s |%-30s|", this.id, this.name, this.phone, this.email);
     }
     
     

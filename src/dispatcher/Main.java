@@ -2,6 +2,7 @@
 package dispatcher;
 
 import business.Customers;
+import business.SetMenus;
 import javax.xml.transform.OutputKeys;
 import model.Customer;
 import sun.security.mscapi.PRNG;
@@ -12,6 +13,7 @@ public class Main {
         Inputter ndl = new Inputter();
         int choice = 0;
         Customers dskh = new Customers();
+        SetMenus mn=new SetMenus();
         
         //--------làm menu---------//
         do {            
@@ -42,6 +44,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Ban da chon chuc nang Hien danh sach theo ten");
+                    mn.showAll();
                     break;
                 case 5:
                     System.out.println("Ban da chon chuc nang Dat tiec");

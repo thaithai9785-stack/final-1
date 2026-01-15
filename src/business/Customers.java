@@ -5,12 +5,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.plaf.synth.Region;
 import model.Customer;
 
 
 public class Customers extends HashMap<String , Customer>{
     private String pathFile;
     private boolean Saved;
+    private final String TABLE_HEADER = ("|------------------------------------------------------------|\n"
+                + "|  ID  |        Full Name         |    Phone  |     Gmail    |\n"
+                + "|------|--------------------------|-----------|--------------|");
+    
+     private final String TABLE_FOOTER =("|------------------------------------------------------------|");
+    
 
     public Customers() {
         super();
@@ -51,13 +58,11 @@ public class Customers extends HashMap<String , Customer>{
         showAll(this.values());
     }
     public void showAll(Collection<Customer> l) {
-        System.out.println("|------|--------------------------|-----------|--------------|\n"
-                + "|  ID  |        Full Name         |    Phone  |     Gmail    |\n"
-                + "|------|--------------------------|-----------|--------------|");
+        System.out.println(TABLE_HEADER);
         for (Customer i : l) {
             System.out.println(i);
         }
-        System.out.println("|------|--------------------------|-----------|--------------|");
+        System.out.println(TABLE_FOOTER);
     }
     
 }
