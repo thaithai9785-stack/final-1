@@ -50,11 +50,14 @@ public class Customers extends HashMap<String , Customer>{
     public void showAll(){
         showAll(this.values());
     }
-    public void showAll(Collection<Customer> l){
+    public void showAll(Collection<Customer> l) {
+        System.out.println("|------|--------------------------|-----------|--------------|\n"
+                + "|  ID  |        Full Name         |    Phone  |     Gmail    |\n"
+                + "|------|--------------------------|-----------|--------------|");
         for (Customer i : l) {
             System.out.println(i);
         }
-   
+        System.out.println("|------|--------------------------|-----------|--------------|");
     }
     
 }

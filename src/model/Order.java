@@ -80,7 +80,7 @@ public class Order {
     }
     
     
-    //sinh mã t? d?ng
+    //sinh mã tự động
     private String generateOrderCode(){
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");

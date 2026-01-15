@@ -30,7 +30,6 @@ public class Inputter {
         return kq;
     }
 
-    //thieu dieu kien
     public double getDouble(String mess) {
         String tam = getString(mess);
         double kq=0;
