@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package business;
 
 import java.io.BufferedReader;
@@ -15,10 +12,7 @@ import java.util.logging.Logger;
 import javafx.scene.text.Text;
 import model.SetMenu;
 
-/**
- *
- * @author hai
- */
+
 public class SetMenus extends ArrayList<SetMenu> {
     private String pathFile;
 
