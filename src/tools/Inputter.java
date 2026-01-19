@@ -38,8 +38,6 @@ public class Inputter {
         return kq;
     }
 
-  
-
     public String inputAndLoop(String mess, String partern){
         boolean more = true;
         String result="";

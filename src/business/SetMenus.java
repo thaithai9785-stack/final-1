@@ -12,10 +12,7 @@ import java.util.logging.Logger;
 import javafx.scene.text.Text;
 import model.SetMenu;
 
-/**
- *
- * @author hai
- */
+
 public class SetMenus extends ArrayList<SetMenu> {
     private String pathFile;
 
