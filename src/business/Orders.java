@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import model.Order;
 
-public class Orders extends HashSet<Order>{
+public class Orders extends HashSet<Order> implements Workable<Order>{
     private String pathFile;
     private boolean saved;
 
@@ -20,13 +20,6 @@ public class Orders extends HashSet<Order>{
         return saved;
     }
     
-    public void addNew(Order x) {
-        if (searchById(x.getOrderCode()) == null) {
-            this.add(x);
-            this.saved = false;
-        }
-        else System.out.println("du lieu da co");
-    }
     
     public void update(Order x) {
         for (Order i : this) {
@@ -59,4 +52,18 @@ public class Orders extends HashSet<Order>{
         }
     }
 
+    public boolean isDuplicated(Order x){
+        return this.contains(x);
+    }
+    
+    
+    @Override
+    public void addNew(Order x){
+        if(!this.isDuplicated(x))
+            this.add(x);
+    }
+    
+    
+    
+    
 }

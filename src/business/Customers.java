@@ -9,14 +9,14 @@ import javax.swing.plaf.synth.Region;
 import model.Customer;
 
 
-public class Customers extends HashMap<String , Customer>{
+public class Customers extends HashMap<String , Customer> implements Workable<Customer>{ 
     private String pathFile;
     private boolean Saved;
-    private final String TABLE_HEADER = ("|------------------------------------------------------------|\n"
-                + "|  ID  |        Full Name         |    Phone  |     Gmail    |\n"
-                + "|------|--------------------------|-----------|--------------|");
+    private final String TABLE_HEADER = ("|------------------------------------------------------------------|\n"
+                + "|  ID  |        Full Name         |    Phone  |        Gmail       |\n"
+                + "|------|--------------------------|-----------|--------------------|");
     
-     private final String TABLE_FOOTER =("|------------------------------------------------------------|");
+     private final String TABLE_FOOTER =("|------------------------------------------------------------------|");
     
 
     public Customers() {

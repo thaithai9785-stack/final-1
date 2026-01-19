@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package business;
 
 import java.io.BufferedReader;
@@ -28,18 +25,17 @@ public class SetMenus extends ArrayList<SetMenu> {
         this.readFromFile();
     }
     
-    public void showAll(){
+    public void showAll() {
         for (SetMenu i : this) {
             System.out.println(i);
         }
-            
-        }
-    
+    }
+
     public void readFromFile() {
         FileReader fr = null;
         try {
             //1.tạo file
-            File f = new File(pathFile);
+             File f = new File(pathFile);
             //2.ánh xạ vào .. dựa vào ?
             fr = new FileReader(f);
             //3.tạo bộ đệm để vận chuyển FileReader
@@ -80,10 +76,7 @@ public class SetMenus extends ArrayList<SetMenu> {
         } catch (Exception e) {
             x=null;
         }
-       
-        
-        
-        
+      
         return x;
     }
 }

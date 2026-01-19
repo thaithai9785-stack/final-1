@@ -17,18 +17,19 @@ public class Main {
         
         //--------làm menu---------//
         do {            
-        
+                
             choice = ndl.getInt("\n---------------------------\n"
-        + "1. Register customers.\n"
-        + "2. Update customer information.\n"
-        + "3. Search for customer information by name.\n"
-        + "4. Display feast menus.\n"
-        + "5. Place a feast order.\n"
-        + "6. Update order information.\n"
-        + "7. Save data to file.\n"
-        + "8. Display Customer or Order lists.\n"
-        + "Others- Quit.\n");
-                System.out.println("Mời bạn nhập vào lựa chọn");
+                    + "1. Register customers.\n"
+                    + "2. Update customer information.\n"
+                    + "3. Search for customer information by name.\n"
+                    + "4. Display feast menus.\n"
+                    + "5. Place a feast order.\n"
+                    + "6. Update order information.\n"
+                    + "7. Save data to file.\n"
+                    + "8. Display Customer or Order lists.\n"
+                    + "Others- Quit.\n"
+                    + "Your choice: ");
+
             
             switch (choice) {
                 case 1:
@@ -40,7 +41,7 @@ public class Main {
                     System.out.println("Ban da chon chuc nang Update khach hang moi ");
                     break;
                 case 3:
-                    System.out.println("Ban da chon chuc nang Tim khach hang ");
+                    System.out.println("Ban da chon chuc nang Tim khach hang theo ten");
                     break;
                 case 4:
                     System.out.println("Ban da chon chuc nang Hien danh sach theo ten");
