@@ -1,10 +1,17 @@
 
 package business;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.plaf.synth.Region;
 import model.Customer;
 
@@ -65,4 +72,38 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         System.out.println(TABLE_FOOTER);
     }
     
+        
+    public void saveToFile() {
+        try {
+            if (this.Saved) {
+                return;
+            }
+            FileOutputStream fos = null;
+            //1. tạo file object
+            File f = new File(this.pathFile);
+            //2. Tạo fileObjectStream ánh  xạ tới fife Object
+            fos = new FileOutputStream(f);
+            //3. Tạo ObjectOutputStream để chuyển dữ liệu xuống thiết bị
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            //4. lặp ghi dữ liệu
+            for (Customer i : this.values()) {
+                oos.writeObject(i);
+            }
+            //5. Đóng các object tương ứng sau khi xử lí
+            oos.close();
+            fos.close();
+            //6. ghi nhận trạng thái
+            this.Saved = true;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public final void readFromFile(){
+        
+    }
+
 }

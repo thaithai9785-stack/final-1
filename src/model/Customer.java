@@ -1,8 +1,10 @@
 
 package model;
 
+import java.io.Serializable;
 
-public class Customer {
+
+public class Customer implements Serializable{
     private String id;
     private String name;
     private String phone;
@@ -55,7 +57,6 @@ public class Customer {
         //return "Customer{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + '}';
         return String.format("|%-5s |%-25s |%-10s |%-20s|", this.id, this.name, this.phone, this.email);
     }
-    
-    
+
     
 }
