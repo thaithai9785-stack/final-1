@@ -33,12 +33,12 @@ public class Main {
             
             switch (choice) {
                 case 1:
-                    System.out.println("Ban da chon chuc nang Them khach hang moi");
+                    System.out.println("Register customers:");
                     Customer x= ndl.getCustomerInfo();
                     dskh.addNew(x);
                     break;
                 case 2:
-                    System.out.println("Ban da chon chuc nang Update khach hang moi ");
+                    dskh.updateCustomerInformation();
                     break;
                 case 3:
                     System.out.println("Ban da chon chuc nang Tim khach hang theo ten");
