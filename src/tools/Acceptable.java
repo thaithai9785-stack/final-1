@@ -3,6 +3,9 @@ package tools;
 
 
 public interface Acceptable {
+
+    public static String MENU_ID_VALID;
+    public static String PROVINCE_VALID;
     public final String CUS_ID_VALID = "^[CcGgKk]\\d{4}$";
     public final String NAME_VALID = "^.{2,25}$";
     public final String PHONE_VALID = "^[0]\\d{9}$";

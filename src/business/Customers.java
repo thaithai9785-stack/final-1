@@ -2,6 +2,7 @@
 package business;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -74,6 +75,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     
         
     public void saveToFile() {
+        
         try {
             if (this.Saved) {
                 return;
@@ -103,7 +105,9 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     }
     
     public final void readFromFile(){
-        
+        FileInputStream fis = null;
+        1. taofile 
+                File
     }
 
 }

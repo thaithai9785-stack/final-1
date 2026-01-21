@@ -38,25 +38,55 @@ public class Inputter {
         return kq;
     }
 
-    public String inputAndLoop(String mess, String partern){
+    //Kiểm tra dữ liệu nhập vào có hợp lệ hay không
+    public String inputAndLoop(String mess, String pattern, boolean isLoop){
         boolean more = true;
         String result="";
         do{
             result = getString(mess);
-            more = !Acceptable.isValid(result, partern);
+            more = !Acceptable.isValid(result, pattern);
             
             if(more)
-                System.out.println("Data if incorrect...");
-        } while(more);
+                System.out.println("Data if incorrect!");
+        } while(more && isLoop);
         return result;
     }
     
+    //Nhập dữ liệu thông tin khách hàng từ bàn phím
+    public String getCusId(String mess) {
+        return inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true);
+    }
+
+    public String getName(String mess) {
+        return inputAndLoop("Customer Name: ", Acceptable.NAME_VALID, true);
+    }
+
+    public String getPhone(String mess) {
+        return inputAndLoop("Phone number [10 digits]: ", Acceptable.PHONE_VALID, true);
+    }
+
+    public String getEmail(String mess) {
+        return inputAndLoop("Email address: ", Acceptable.EMAIL_VALID, true);
+    }
+
+    public String getMenuId(String mess) {
+        return inputAndLoop("Menu ID: ", Acceptable.MENU_ID_VALID, true);
+    }
+
+    public String getProvince(String mess) {
+        return inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true);
+    }
+    
+    
     public Customer getCustomerInfo() {
         Customer x = new Customer();
-        x.setId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID));
-        x.setName(inputAndLoop("Customer Name: ", Acceptable.NAME_VALID));
-        x.setPhone(inputAndLoop("Customer Phone: ", Acceptable.PHONE_VALID));
-        x.setEmail(inputAndLoop("Customer Email: ", Acceptable.EMAIL_VALID));
+        x.setId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID,true));
+        x.setName(inputAndLoop("Customer Name: ", Acceptable.NAME_VALID,true));
+        x.setPhone(inputAndLoop("Customer Phone: ", Acceptable.PHONE_VALID,true));
+        x.setEmail(inputAndLoop("Customer Email: ", Acceptable.EMAIL_VALID,true));
         return x;
     }
+    
+    
+    
 }
