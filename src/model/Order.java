@@ -1,12 +1,13 @@
 
 package model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
 
-public class Order {
+public class Order implements Serializable{
     private String orderCode;
     private String customerId;
     private String province;
@@ -81,7 +82,7 @@ public class Order {
     
     
     //sinh mã tự động
-    private String generateOrderCode(){
+    public String generateOrderCode(){
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
         return sdf.format(now);

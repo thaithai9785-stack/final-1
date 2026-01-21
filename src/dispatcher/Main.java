@@ -2,9 +2,11 @@
 package dispatcher;
 
 import business.Customers;
+import business.Orders;
 import business.SetMenus;
 import javax.xml.transform.OutputKeys;
 import model.Customer;
+import model.Order;
 import sun.security.mscapi.PRNG;
 import tools.Inputter;
 
@@ -14,6 +16,7 @@ public class Main {
         int choice = 0;
         Customers dskh = new Customers();
         SetMenus mn=new SetMenus();
+        Orders dsdh = new Orders();
         
         //--------làm menu---------//
         do {            
@@ -47,18 +50,64 @@ public class Main {
                     mn.showMenus();
                     break;
                 case 5:
-                    System.out.println("Ban da chon chuc nang Dat tiec");
+                    Order order = ndl.getOrderInfo();
+                    // Check if customer exists
+                    Customer customer = dskh.searchById(order.getCustomerId());
+                    if (customer == null) {
+                        System.out.println("Customer not found! Please register customer before placing order.");
+                    } else if (dsdh.isDuplicated(order)) {
+                        System.out.println("Order already exists!");
+                    } else {
+                        dsdh.addNew(order);
+                        System.out.println("Order placed successfully!");
+                    }
+                    dsdh.showAll();
                     break;
+
                 case 6:
-                    System.out.println("Ban da chon chuc nang Update Oder");
+                    String orderCode = ndl.getString("Enter order code to update: ");
+                    Order existingOrder = dsdh.searchById(orderCode);
+                    if (existingOrder == null) {
+                        System.out.println("Order not found!");
+                    } else {
+                        System.out.println("Current order information:");
+                        System.out.println(existingOrder);
+                        System.out.println("Update new information:");
+                        Order updatedOrder = ndl.getOrderInfoToUpdate(orderCode);
+                        dsdh.update(updatedOrder);
+                        System.out.println("Order updated successfully!");
+                    }
                     break;
                 case 7:
-                    System.out.println("Ban da chon chuc nang Save du lieu vao file");
+                    dskh.saveToFile();
+                    dsdh.saveToFile();
+                    System.out.println("Data saved successfully!");
                     break;
                 case 8:
-                    System.out.println("Ban da chon chuc nang Hien Customer hoac Oder");
-                    dskh.showAll();
+                    int displayChoice = 0;
+                    do {
+                        displayChoice = ndl.getInt(
+                                "------------------------------------------\n"
+                                + "\"1.Display customer list.\n"
+                                + "\"2.Display order list.\n"
+                                + "\"Others- Back to main menu.\n"
+                                + "------------------------------------------\n"
+                                + "Your choice: ");
+                        switch (displayChoice) {
+                            case 1:
+                                System.out.println("DANH SACH KHACH HANG:");
+                                dskh.showAll();
+                                break;
+                            case 2:
+                                System.out.println("DANH SACH DON HANG:");
+                                dsdh.showAll();
+                                break;
+                            default:
+                                System.out.println("Back to main menu...");
+                        }
+                    } while (displayChoice >= 1 && displayChoice <= 2);
                     break;
+
                 default:
                     System.out.println("Ket thuc chuong trinh");
                     break;

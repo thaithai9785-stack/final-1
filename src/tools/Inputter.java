@@ -1,8 +1,11 @@
 
 package tools;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import model.Customer;
+import model.Order;
 
 public class Inputter {
     private Scanner ndl;
@@ -87,6 +90,7 @@ public class Inputter {
         return x;
     }
 
+    
     public Customer getCustomerInfoToUpdate(String existingId) {
         Customer x = new Customer();
         x.setId(existingId);
@@ -96,7 +100,59 @@ public class Inputter {
         return x;
     }
     
+  public Date getEventDate(String mess) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false); // Bắt buộc nhập ngày tháng tồn tại thực tế
+
+        // Dùng vòng lặp: Sai thì lặp lại, Đúng thì return thoát luôn
+        while (true) {
+            try {
+                // Bước 1: Nhập chuỗi
+                String dateStr = getString(mess);
+                
+                // Bước 2: Chuyển chuỗi thành ngày (Parse)
+                Date date = sdf.parse(dateStr);
+                
+                // Bước 3: Kiểm tra xem ngày có phải Tương Lai không?
+                Date today = new Date(); // Lấy ngày giờ hiện tại
+                
+                if (date.after(today)) {
+                    // Nếu ngày nhập vào (date) nằm sau ngày hôm nay (today)
+                    return date; // -> Hợp lệ, trả về kết quả
+                } else {
+                    System.out.println("Invalid! Date must be in the future.");
+                }
+
+            } catch (Exception e) {
+                // Bắt lỗi nhập sai định dạng (ví dụ nhập chữ, hoặc ngày 32/1)
+                System.out.println("Invalid format! Please use dd/MM/yyyy");
+            }
+        }
+    }
     
+ 
+   public Order getOrderInfo() {
+        Order x = new Order();
+        x.setCustomerId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true));
+        x.setProvince(inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true));
+        x.setMenuId(inputAndLoop("Menu ID: ", Acceptable.MENU_ID_VALID, true));
+        x.setNumOfTables(getInt("Enter number of tables: "));
+        x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));
+        return x;
+    }
+   
+   
+   public Order getOrderInfoToUpdate(String existingOrderCode) {
+        Order x = new Order();
+        x.setOrderCode(existingOrderCode);
+        x.setCustomerId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true));
+        x.setProvince(inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true));
+        x.setMenuId(inputAndLoop("Menu ID: ", Acceptable.MENU_ID_VALID, true));
+        x.setNumOfTables(getInt("Enter number of tables: "));
+        x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));
+        return x;
+    }
+  
     
 }
 
