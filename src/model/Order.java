@@ -117,8 +117,6 @@ public class Order {
         return Objects.equals(this.evenDate, other.evenDate);
     }
       
-     
-    //hahhahahah
     
     
     

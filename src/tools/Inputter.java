@@ -16,7 +16,7 @@ public class Inputter {
     }
     
     public String getString(String mess) {
-        System.out.println(mess);
+        System.out.print(mess);
         return this.ndl.nextLine();
     }
 
@@ -47,7 +47,7 @@ public class Inputter {
             more = !Acceptable.isValid(result, pattern);
             
             if(more)
-                System.out.println("Data if incorrect!");
+                System.out.println("Data is incorrect!");
         } while(more && isLoop);
         return result;
     }

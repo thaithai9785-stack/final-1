@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Customer;
@@ -40,7 +43,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     }
     
     public void addNew(Customer x){
-        this.putIfAbsent(x.getName(), x);
+        this.putIfAbsent(x.getId(), x);
         //put or putIfAbsent
         this.Saved = false;
     }
@@ -65,7 +68,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         return this.get(id);
     }
     
-    public List<Customer> fitlerByName(String name){
+    public List<Customer> filterByName(String name){
      List<Customer> result = new ArrayList<>();
         for (Customer i : this.values()) {
             if(i.getName().toLowerCase().contains(name.toLowerCase()))
@@ -122,24 +125,52 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         
     }
     
+    
+    // func 2:
     public void updateCustomerInformation() {
-  
-        String customerId = inputter.getCusId("Enter customer ID to update: ");
-        Customer existingCustomer = searchById(customerId); 
-        if (existingCustomer == null) {
-            System.out.println("Customer not found!");
-        } else {
-            System.out.println("Current info: \n" + existingCustomer);
-            System.out.println("Updating new information...");
-            Customer newInfo = inputter.getCustomerInfoToUpdate(customerId);
-            
-            //Copy thông tin
-            update(newInfo);
-            
-            System.out.println("Customer updated successfully!");
-        }
+        String choice = "";
+        Scanner sc = new Scanner(System.in);
+        do {
+            String customerId = inputter.getCusId("Enter customer ID to update: ");
+            Customer existingCustomer = searchById(customerId);
+            if (existingCustomer == null) {
+                System.out.println("Customer not found!");
+            } else {
+                System.out.println("Current info: \n" + existingCustomer);
+                System.out.println("Updating new information...");
+                Customer newInfo = inputter.getCustomerInfoToUpdate(customerId);
 
+                //Copy thông tin
+                update(newInfo);
+
+                System.out.println("Customer updated successfully!");
+            }
+
+            //hoi ng dung co muon tiep tuc ko
+            System.out.print("Do you want to continue updating another customer? (Y/N): ");
+            choice = sc.nextLine();
+        } while (choice.equalsIgnoreCase("Y"));
 }
+    
+    
+    // func 3:
+    public void searchCustomerByName() {
+        System.out.println("You choose search customer by name");
+        String name = inputter.getString("Enter name to search: ");
+
+        List<Customer> result = this.filterByName(name);
+
+        if (result.isEmpty()) {
+            System.out.println("No one matches the search criteria!");
+        } else {
+            //Lambda Expression
+            Collections.sort(result, (c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+            showAll(result);
+        }
+    }
+    
+  
+    
     
 
 }

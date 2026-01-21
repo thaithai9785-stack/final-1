@@ -41,11 +41,10 @@ public class Main {
                     dskh.updateCustomerInformation();
                     break;
                 case 3:
-                    System.out.println("Ban da chon chuc nang Tim khach hang theo ten");
+                    dskh.searchCustomerByName();
                     break;
                 case 4:
-                    System.out.println("Ban da chon chuc nang Hien danh sach theo ten");
-                    mn.showAll();
+                    mn.showMenus();
                     break;
                 case 5:
                     System.out.println("Ban da chon chuc nang Dat tiec");

@@ -7,9 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.text.Text;
 import model.SetMenu;
 
 
@@ -22,9 +22,24 @@ public class SetMenus extends ArrayList<SetMenu> {
         this.readFromFile();
     }
     
-    public void showAll() {
-        for (SetMenu i : this) {
-            System.out.println(i);
+    public void showMenus() {
+        Collections.sort(this, (c1,c2) -> Double.compare(c1.getPrice(), c2.getPrice()));
+        
+        // 2. Hiển thị ra màn hình 
+        System.out.println("List of Set Menus for ordering party:");
+        System.out.println("---------------------------------------");
+        
+        for (SetMenu menu : this) {
+            System.out.println("Code : " + menu.getMenuId());
+            System.out.println("Name : " + menu.getMenuName());
+            System.out.printf("Price : %,.0f Vnd\n", menu.getPrice()); 
+            System.out.println("Ingredients:");
+            
+            //Thay dấu # thành xuống dòng và dấu +
+            String formattedIng = menu.getIngredients().replace("#", "\n+ ");
+            // Thêm dấu + cho dòng đầu tiên
+            System.out.println("+ " + formattedIng);
+            System.out.println("---------------------------------------");
         }
     }
 
