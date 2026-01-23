@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -120,8 +121,27 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     }
     
     public final void readFromFile(){
-        FileInputStream fis = null;
-        //1. taofile 
+        try {
+            FileInputStream fis = null;
+            //1. taofile
+            File f = new File(pathFile);
+            if(!f.exists()) System.out.println("File not found");
+            fis = new FileInputStream(f);
+            ObjectInputStream ois= new ObjectInputStream(fis);
+            while (fis.available()>0) {
+                Customer x = (Customer) ois.readObject();
+                this.put(x.getId(), x);
+            }
+            fis.close();
+            ois.close();
+            this.Saved = true;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -139,18 +159,16 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
                 System.out.println("Current info: \n" + existingCustomer);
                 System.out.println("Updating new information...");
                 Customer newInfo = inputter.getCustomerInfoToUpdate(customerId);
-
                 //Copy thông tin
                 update(newInfo);
 
                 System.out.println("Customer updated successfully!");
             }
-
             //hoi ng dung co muon tiep tuc ko
             System.out.print("Do you want to continue updating another customer? (Y/N): ");
             choice = sc.nextLine();
         } while (choice.equalsIgnoreCase("Y"));
-}
+    }
     
     
     // func 3:
@@ -170,7 +188,6 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     }
     
   
-    
     
 
 }
