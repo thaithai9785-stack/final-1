@@ -122,7 +122,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     public final void readFromFile(){
         FileInputStream fis = null;
         //1. taofile 
-        
+//GADFA
     }
     
     
