@@ -48,6 +48,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         //put or putIfAbsent
         this.Saved = false;
     }
+  
     
 //    public void update(Customer x){
 //        Customer z = this.get(x.getId());
@@ -122,10 +123,6 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     
     public final void readFromFile(){
 
-        FileInputStream fis = null;
-        //1. taofile 
-
-
         try {
             FileInputStream fis = null;
             //1. taofile
@@ -152,7 +149,6 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     }
     
     
-    // func 2:
     public void updateCustomerInformation() {
         String choice = "";
         Scanner sc = new Scanner(System.in);

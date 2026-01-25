@@ -89,7 +89,7 @@ public class Inputter {
         x.setEmail(inputAndLoop("Customer Email: ", Acceptable.EMAIL_VALID,true));
         return x;
     }
-
+    
     
     public Customer getCustomerInfoToUpdate(String existingId) {
         Customer x = new Customer();
@@ -152,6 +152,8 @@ public class Inputter {
         x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));
         return x;
     }
+
+ 
   
     
 }

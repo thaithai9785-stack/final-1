@@ -36,10 +36,15 @@ public class Main {
             
             switch (choice) {
                 case 1:
-                    System.out.println("Register customers:");
+                    /*System.out.println("Register customers:");
                     Customer x= ndl.getCustomerInfo();
                     dskh.addNew(x);
-                    break;
+                    break;*/
+                    
+                    System.out.println("Register Customer");
+                    Customer x = ndl.getCustomerInfo();
+                    dskh.addNew(x);
+                    
                 case 2:
                     dskh.updateCustomerInformation();
                     break;
