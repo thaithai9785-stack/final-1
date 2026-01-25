@@ -83,7 +83,9 @@ public class Order implements Serializable{
     
     //sinh mã tự động
     public String generateOrderCode(){
+    //lay tgian hien tai
         Date now = new Date();
+        //format
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
         return sdf.format(now);
     }
@@ -118,6 +120,15 @@ public class Order implements Serializable{
         return Objects.equals(this.evenDate, other.evenDate);
     }
       
+    
+  
+    public String generateOrderCode1(){
+    //lay tgian hien tai
+        Date now = new Date();
+        //format
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        return sdf.format(now);
+    }
     
     
     

@@ -1,9 +1,12 @@
 
 package tools;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Customer;
 import model.Order;
 
@@ -41,6 +44,17 @@ public class Inputter {
         return kq;
     }
 
+    
+    public int getInt1(String mess) {
+        int kq = 0;
+        String tam = getString(mess);
+        if (Acceptable.isValid(tam, Acceptable.INTEGER_VALID)) {
+            kq = Integer.parseInt(tam);
+        }
+        return kq;
+    }
+    
+    
     //Kiểm tra dữ liệu nhập vào có hợp lệ hay không
     public String inputAndLoop(String mess, String pattern, boolean isLoop){
         boolean more = true;
@@ -80,7 +94,7 @@ public class Inputter {
         return inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true);
     }
     
-    
+     //func 1
     public Customer getCustomerInfo() {
         Customer x = new Customer();
         x.setId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID,true));
@@ -89,6 +103,7 @@ public class Inputter {
         x.setEmail(inputAndLoop("Customer Email: ", Acceptable.EMAIL_VALID,true));
         return x;
     }
+    
     
     
     public Customer getCustomerInfoToUpdate(String existingId) {
@@ -103,38 +118,33 @@ public class Inputter {
   public Date getEventDate(String mess) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false); // Bắt buộc nhập ngày tháng tồn tại thực tế
-
         // Dùng vòng lặp: Sai thì lặp lại, Đúng thì return thoát luôn
         while (true) {
             try {
                 // Bước 1: Nhập chuỗi
-                String dateStr = getString(mess);
-                
+                String dateStr = getString(mess);                
                 // Bước 2: Chuyển chuỗi thành ngày (Parse)
-                Date date = sdf.parse(dateStr);
-                
+                Date date = sdf.parse(dateStr);              
                 // Bước 3: Kiểm tra xem ngày có phải Tương Lai không?
-                Date today = new Date(); // Lấy ngày giờ hiện tại
-                
+                Date today = new Date(); // Lấy ngày giờ hiện tại                
                 if (date.after(today)) {
                     // Nếu ngày nhập vào (date) nằm sau ngày hôm nay (today)
                     return date; // -> Hợp lệ, trả về kết quả
                 } else {
                     System.out.println("Invalid! Date must be in the future.");
                 }
-
             } catch (Exception e) {
                 // Bắt lỗi nhập sai định dạng (ví dụ nhập chữ, hoặc ngày 32/1)
                 System.out.println("Invalid format! Please use dd/MM/yyyy");
             }
         }
     }
-    
+  
+ 
  
    public Order getOrderInfo() {
         Order x = new Order();
         x.setCustomerId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true));
-        x.setProvince(inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true));
         x.setMenuId(inputAndLoop("Menu ID: ", Acceptable.MENU_ID_VALID, true));
         x.setNumOfTables(getInt("Enter number of tables: "));
         x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));
@@ -146,7 +156,6 @@ public class Inputter {
         Order x = new Order();
         x.setOrderCode(existingOrderCode);
         x.setCustomerId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true));
-        x.setProvince(inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true));
         x.setMenuId(inputAndLoop("Menu ID: ", Acceptable.MENU_ID_VALID, true));
         x.setNumOfTables(getInt("Enter number of tables: "));
         x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));

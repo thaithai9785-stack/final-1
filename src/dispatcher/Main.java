@@ -36,15 +36,10 @@ public class Main {
             
             switch (choice) {
                 case 1:
-                    /*System.out.println("Register customers:");
+                    System.out.println("Register customers:");
                     Customer x= ndl.getCustomerInfo();
-                    dskh.addNew(x);
-                    break;*/
-                    
-                    System.out.println("Register Customer");
-                    Customer x = ndl.getCustomerInfo();
-                    dskh.addNew(x);
-                    
+                    dskh.addNew(x); 
+                    break;
                 case 2:
                     dskh.updateCustomerInformation();
                     break;
@@ -68,7 +63,6 @@ public class Main {
                     }
                     dsdh.showAll();
                     break;
-
                 case 6:
                     String orderCode = ndl.getString("Enter order code to update: ");
                     Order existingOrder = dsdh.searchById(orderCode);
@@ -82,6 +76,7 @@ public class Main {
                         dsdh.update(updatedOrder);
                         System.out.println("Order updated successfully!");
                     }
+                    
                     break;
                 case 7:
                     dskh.saveToFile();
@@ -114,7 +109,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Ket thuc chuong trinh");
+                    System.out.println("End program");
                     break;
             }
         } while (choice >= 1 && choice <=8);

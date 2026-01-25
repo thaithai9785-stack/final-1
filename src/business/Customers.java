@@ -43,6 +43,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         return Saved;
     }
     
+    //func 1
     public void addNew(Customer x){
         this.putIfAbsent(x.getId(), x);
         //put or putIfAbsent
@@ -66,6 +67,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         }
     }
     
+    
     public Customer searchById(String id){
         return this.get(id);
     }
@@ -79,6 +81,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         return result;
     }
     
+  
     public void showAll(){
         showAll(this.values());
     }
@@ -89,10 +92,8 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         }
         System.out.println(TABLE_FOOTER);
     }
-    
         
-    public void saveToFile() {
-        
+    public void saveToFile() { 
         try {
             if (this.Saved) {
                 return;
@@ -118,8 +119,8 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         } catch (IOException ex) {
             Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
+    }    
+    
     
     public final void readFromFile(){
 
@@ -149,6 +150,16 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     }
     
     
+    /* while (fis.available()>0) {
+                Customer x = (Customer) ois.readObject();
+                this.put(x.getId(), x);
+            }
+    còn du li?u thì làm ti?p
+            */
+    
+    
+    
+    
     public void updateCustomerInformation() {
         String choice = "";
         Scanner sc = new Scanner(System.in);
@@ -163,7 +174,6 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
                 Customer newInfo = inputter.getCustomerInfoToUpdate(customerId);
                 //Copy thông tin
                 update(newInfo);
-
                 System.out.println("Customer updated successfully!");
             }
             //hoi ng dung co muon tiep tuc ko
@@ -171,9 +181,8 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
             choice = sc.nextLine();
         } while (choice.equalsIgnoreCase("Y"));
     }
-    
-    
-    // func 3:
+
+
     public void searchCustomerByName() {
         System.out.println("You choose search customer by name");
         String name = inputter.getString("Enter name to search: ");
@@ -188,7 +197,6 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
             showAll(result);
         }
     }
-    
   
     
 

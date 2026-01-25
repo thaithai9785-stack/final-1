@@ -34,15 +34,15 @@ public class SetMenus extends ArrayList<SetMenu> {
             System.out.println("Name : " + menu.getMenuName());
             System.out.printf("Price : %,.0f Vnd\n", menu.getPrice()); 
             System.out.println("Ingredients:");
-            
+        
             //Thay dấu # thành xuống dòng và dấu +
-            String formattedIng = menu.getIngredients().replace("#", "\n+ ");
-            // Thêm dấu + cho dòng đầu tiên
-            System.out.println("+ " + formattedIng);
+            String formattedIng = menu.getIngredients().replace("#", "\n");
+            // Thêm dấu + cho dòng đầu tiên    
+            System.out.println(formattedIng);
             System.out.println("---------------------------------------");
         }
     }
-
+    
     public void readFromFile() {
         FileReader fr = null;
         try {

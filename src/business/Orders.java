@@ -43,8 +43,8 @@ public class Orders extends HashSet<Order> implements Workable<Order>{
         }
     }
     
- 
-    public Order searchById(String orderCode) {
+    //cach 1
+    /*public Order searchById(String orderCode) {
         Order result = null;
         Iterator<Order> it = this.iterator();
         while (it.hasNext() && result == null) {
@@ -53,6 +53,15 @@ public class Orders extends HashSet<Order> implements Workable<Order>{
                 result = x;
         }
         return result;
+    }*/
+    
+    //cach 2
+    public Order searchById(String orderCode){
+        for (Order o : this) {
+         if(o.getMenuId().equalsIgnoreCase(orderCode))
+             return o;
+        }
+        return null;
     }
 
     public void showAll(){
