@@ -35,9 +35,9 @@ public class SetMenus extends ArrayList<SetMenu> {
             System.out.printf("Price : %,.0f Vnd\n", menu.getPrice()); 
             System.out.println("Ingredients:");
         
-            //Thay dấu # thành xuống dòng và dấu +
+            //Thay dấu # thành xuống dòng
             String formattedIng = menu.getIngredients().replace("#", "\n");
-            // Thêm dấu + cho dòng đầu tiên    
+             
             System.out.println(formattedIng);
             System.out.println("---------------------------------------");
         }

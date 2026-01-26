@@ -38,7 +38,7 @@ public class Main {
                 case 1:
                     System.out.println("Register customers:");
                     Customer x= ndl.getCustomerInfo();
-                    dskh.addNew(x); 
+                    dskh.addNew(x);                   
                     break;
                 case 2:
                     dskh.updateCustomerInformation();
@@ -51,15 +51,14 @@ public class Main {
                     break;
                 case 5:
                     Order order = ndl.getOrderInfo();
-                    // Check if customer exists
-                    Customer customer = dskh.searchById(order.getCustomerId());
-                    if (customer == null) {
-                        System.out.println("Customer not found! Please register customer before placing order.");
-                    } else if (dsdh.isDuplicated(order)) {
-                        System.out.println("Order already exists!");
-                    } else {
+                    Customer exisCustomer = dskh.searchById(order.getCustomerId());
+                    if(exisCustomer == null)
+                        System.out.println("Customer not found! Please register customer before placing order");
+                    else if(dsdh.isDuplicated(order))
+                        System.out.println("Order already exists");
+                    else {
                         dsdh.addNew(order);
-                        System.out.println("Order placed successfully!");
+                        System.out.println("Order placed successfully");
                     }
                     dsdh.showAll();
                     break;
@@ -76,6 +75,8 @@ public class Main {
                         dsdh.update(updatedOrder);
                         System.out.println("Order updated successfully!");
                     }
+               
+                    
                     
                     break;
                 case 7:

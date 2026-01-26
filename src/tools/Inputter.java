@@ -94,7 +94,7 @@ public class Inputter {
         return inputAndLoop("Province: ", Acceptable.PROVINCE_VALID, true);
     }
     
-     //func 1
+  
     public Customer getCustomerInfo() {
         Customer x = new Customer();
         x.setId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID,true));
@@ -104,7 +104,7 @@ public class Inputter {
         return x;
     }
     
-    
+
     
     public Customer getCustomerInfoToUpdate(String existingId) {
         Customer x = new Customer();

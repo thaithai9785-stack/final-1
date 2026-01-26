@@ -37,6 +37,10 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         this.inputter = new Inputter();
         this.Saved= true;
         this.pathFile= "./customers.dat";
+        
+        this.put("C0001", new Customer("C0001", "Nguyen Van A", "0123456789", "vana@gmail.com"));
+        this.put("C0002", new Customer("C0002", "Tran Thi B", "0987654321", "btran@gmail.com"));
+        this.put("C0003", new Customer("C0003", "Le Van C", "0789654321", "cvan@gmail.com"));
     }
 
     public boolean isSaved() {
@@ -50,12 +54,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         this.Saved = false;
     }
   
-    
-//    public void update(Customer x){
-//        Customer z = this.get(x.getId());
-//        if (z!=null)
-//            z=x;
-//    }
+
     
     @Override
     public void update(Customer x) {
