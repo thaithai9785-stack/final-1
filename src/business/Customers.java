@@ -49,7 +49,7 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     
     //func 1
     public void addNew(Customer x){
-        this.putIfAbsent(x.getId(), x);
+        this.putIfAbsent(x.getId().toUpperCase(), x);
         //put or putIfAbsent
         this.Saved = false;
     }
@@ -68,17 +68,17 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     
     
     public Customer searchById(String id){
-        return this.get(id);
+        return this.get(id.toUpperCase());
     }
     
-    public List<Customer> filterByName(String name){
-     List<Customer> result = new ArrayList<>();
-        for (Customer i : this.values()) {
-            if(i.getName().toLowerCase().contains(name.toLowerCase()))
-                result.add(i);
-        }
-        return result;
-    }
+//    public List<Customer> filterByName(String name){
+//     List<Customer> result = new ArrayList<>();
+//        for (Customer i : this.values()) {
+//            if(i.getName().toLowerCase().contains(name.toLowerCase()))
+//                result.add(i);
+//        }
+//        return result;
+//    }
     
   
     public void showAll(){
@@ -181,22 +181,45 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         } while (choice.equalsIgnoreCase("Y"));
     }
 
-
-    public void searchCustomerByName() {
-        System.out.println("You choose search customer by name");
-        String name = inputter.getString("Enter name to search: ");
-
-        List<Customer> result = this.filterByName(name);
-
-        if (result.isEmpty()) {
-            System.out.println("No one matches the search criteria!");
-        } else {
-            //Lambda Expression
-            Collections.sort(result, (c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
-            showAll(result);
-        }
-    }
-  
+    
+    //cach 1
+//    public void searchCustomerByName() {
+//        System.out.println("You choose search customer by name");
+//        String name = inputter.getString("Enter name to search: ");
+//
+//        List<Customer> result = this.filterByName(name);
+//
+//        if (result.isEmpty()) {
+//            System.out.println("No one matches the search criteria!");
+//        } else {
+//            //Lambda Expression
+//            Collections.sort(result, (c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
+//            showAll(result);
+//        }
+//    }
+    
+    
     
 
+  
+     //Cách 2
+    public void searchByName(String name) {
+        System.out.println("Result");
+        int count = 0;
+        for (Customer i : this.values()) {
+            if(i.getName().toLowerCase().contentEquals(name)){
+                System.out.println(i);
+                count ++;
+            }
+        }
+        if(count ==0) System.out.println("ko tim thay ten");
+    }
+    
+
+    
+    
+    
+    
+    
+    
 }

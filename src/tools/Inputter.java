@@ -103,8 +103,8 @@ public class Inputter {
         x.setEmail(inputAndLoop("Customer Email: ", Acceptable.EMAIL_VALID,true));
         return x;
     }
+ 
     
-
     
     public Customer getCustomerInfoToUpdate(String existingId) {
         Customer x = new Customer();
@@ -152,7 +152,7 @@ public class Inputter {
     }
    
    
-   public Order getOrderInfoToUpdate(String existingOrderCode) {
+     public Order getOrderInfoToUpdate(String existingOrderCode) {
         Order x = new Order();
         x.setOrderCode(existingOrderCode);
         x.setCustomerId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true));

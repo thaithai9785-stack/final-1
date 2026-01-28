@@ -39,16 +39,32 @@ public class Main {
                     System.out.println("Register customers:");
                     Customer x= ndl.getCustomerInfo();
                     dskh.addNew(x);                   
-                    break;
+                    break;  
                 case 2:
-                    dskh.updateCustomerInformation();
+
+                    String CusID = ndl.getCusId("Id");
+                    Customer c= dskh.searchById(CusID);
+                    if(c ==null)
+                        System.out.println("ko tim thay");
+                    else{
+                        System.out.println("current info: \n"+c);
+                        System.out.println("update: ");
+                        Customer newInfo = ndl.getCustomerInfoToUpdate(CusID);
+                        dskh.update(newInfo);
+                        System.out.println("update thanh cong");
+                    }
                     break;
                 case 3:
-                    dskh.searchCustomerByName();
+                    String name = ndl.getName("name");
+                    dskh.searchByName(name);
                     break;
+               
                 case 4:
                     mn.showMenus();
                     break;
+                    
+                
+                    
                 case 5:
                     Order order = ndl.getOrderInfo();
                     Customer exisCustomer = dskh.searchById(order.getCustomerId());

@@ -22,26 +22,46 @@ public class SetMenus extends ArrayList<SetMenu> {
         this.readFromFile();
     }
     
-    public void showMenus() {
+//    public void showMenus() {
+//        Collections.sort(this, (c1,c2) -> Double.compare(c1.getPrice(), c2.getPrice()));
+//        
+//        // 2. Hiển thị ra màn hình 
+//        System.out.println("List of Set Menus for ordering party:");
+//        System.out.println("---------------------------------------");
+//        
+//        for (SetMenu menu : this) {
+//            System.out.println("Code : " + menu.getMenuId());
+//            System.out.println("Name : " + menu.getMenuName());
+//            System.out.printf("Price : %,.0f Vnd\n", menu.getPrice()); 
+//            System.out.println("Ingredients:");
+//        
+//            //Thay dấu # thành xuống dòng
+//            String formattedIng = menu.getIngredients().replace("#", "\n");
+//             
+//            System.out.println(formattedIng);
+//            System.out.println("---------------------------------------");
+//        }
+//    }
+    
+    
+    
+    public void showMenus(){
         Collections.sort(this, (c1,c2) -> Double.compare(c1.getPrice(), c2.getPrice()));
-        
-        // 2. Hiển thị ra màn hình 
-        System.out.println("List of Set Menus for ordering party:");
-        System.out.println("---------------------------------------");
-        
-        for (SetMenu menu : this) {
-            System.out.println("Code : " + menu.getMenuId());
-            System.out.println("Name : " + menu.getMenuName());
-            System.out.printf("Price : %,.0f Vnd\n", menu.getPrice()); 
-            System.out.println("Ingredients:");
-        
-            //Thay dấu # thành xuống dòng
-            String formattedIng = menu.getIngredients().replace("#", "\n");
-             
-            System.out.println(formattedIng);
-            System.out.println("---------------------------------------");
+        System.out.println("Menu:");
+        System.out.println("----------------------");
+        for (SetMenu i : this) {
+            System.out.println("id: " +i.getMenuId());
+            System.out.println("Menu Name: " +i.getMenuName());
+            System.out.println("Price: " +i.getPrice());
+            System.out.println("Ingredients: " );
+            
+            String text = i.getIngredients();
+            text = text.replace("\"", "");
+            System.out.println(text.replace("#", "\n"));
+            System.out.println("-----------------------");
         }
     }
+    
     
     public void readFromFile() {
         FileReader fr = null;
