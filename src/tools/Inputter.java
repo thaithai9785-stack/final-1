@@ -140,9 +140,7 @@ public class Inputter {
         }
     }
   
- 
- 
-   public Order getOrderInfo() {
+    public Order getOrderInfo(){
         Order x = new Order();
         x.setCustomerId(inputAndLoop("Customer ID: ", Acceptable.CUS_ID_VALID, true));
         x.setMenuId(inputAndLoop("Menu ID: ", Acceptable.MENU_ID_VALID, true));
@@ -150,6 +148,7 @@ public class Inputter {
         x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));
         return x;
     }
+ 
    
    
      public Order getOrderInfoToUpdate(String existingOrderCode) {
@@ -161,7 +160,6 @@ public class Inputter {
         x.setEvenDate(getEventDate("Enter event date (dd/MM/yyyy): "));
         return x;
     }
-
  
   
     

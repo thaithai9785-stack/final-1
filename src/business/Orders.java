@@ -79,11 +79,24 @@ public class Orders extends HashSet<Order> implements Workable<Order>{
         return saved;
     }
     
+    public void addNew(Order x){
+        String newcode = x.generateOrderCode();
+        x.setOrderCode(newcode);
+        
+        if(!this.saved)
+            return ; 
+    }
     
+    
+    
+    @Override
     public void update(Order x) {
         for (Order i : this) {
             if (i.getOrderCode().equalsIgnoreCase(x.getOrderCode())) {
-                i = x;
+                i.setCustomerId(x.getCustomerId());
+                i.setEvenDate(x.getEvenDate());
+                i.setNumOfTables(x.getNumOfTables());
+                i.setMenuId(x.getMenuId());
                 break;
             }
         }
@@ -104,7 +117,7 @@ public class Orders extends HashSet<Order> implements Workable<Order>{
     //cach 2
     public Order searchById(String orderCode){
         for (Order o : this) {
-         if(o.getMenuId().equalsIgnoreCase(orderCode))
+         if(o.getOrderCode().equalsIgnoreCase(orderCode))
              return o;
         }
         return null;
@@ -124,15 +137,17 @@ public class Orders extends HashSet<Order> implements Workable<Order>{
         return this.contains(x);
     }
     
-    
-    @Override
-    public void addNew(Order x){
-        String newCode = x.generateOrderCode(); 
-        x.setOrderCode(newCode);
-        
-        if(!this.isDuplicated(x))
-            this.add(x);
+    public void updateCode(Order x) {
+        for (Order i : this) {
+            if (i.getOrderCode().equalsIgnoreCase(x.getOrderCode())) {
+                i = x;
+                break;
+            }
+        }
     }
+    
+    
+    
     
     
     public void saveToFile() {

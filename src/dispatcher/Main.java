@@ -41,7 +41,6 @@ public class Main {
                     dskh.addNew(x);                   
                     break;  
                 case 2:
-
                     String CusID = ndl.getCusId("Id");
                     Customer c= dskh.searchById(CusID);
                     if(c ==null)
@@ -57,27 +56,23 @@ public class Main {
                 case 3:
                     String name = ndl.getName("name");
                     dskh.searchByName(name);
-                    break;
-               
+                    break;     
                 case 4:
                     mn.showMenus();
-                    break;
-                    
-                
-                    
+                    break;  
                 case 5:
                     Order order = ndl.getOrderInfo();
-                    Customer exisCustomer = dskh.searchById(order.getCustomerId());
-                    if(exisCustomer == null)
-                        System.out.println("Customer not found! Please register customer before placing order");
+                    Customer existing = dskh.searchById(order.getCustomerId());
+                    if(existing == null)
+                        System.out.println("Khong tim thay khach hang");
                     else if(dsdh.isDuplicated(order))
-                        System.out.println("Order already exists");
-                    else {
+                        System.out.println("don hang bi trung");
+                    else{
                         dsdh.addNew(order);
-                        System.out.println("Order placed successfully");
+                        System.out.println("dat hang thanh cong");
                     }
                     dsdh.showAll();
-                    break;
+                    break;  
                 case 6:
                     String orderCode = ndl.getString("Enter order code to update: ");
                     Order existingOrder = dsdh.searchById(orderCode);
@@ -91,9 +86,6 @@ public class Main {
                         dsdh.update(updatedOrder);
                         System.out.println("Order updated successfully!");
                     }
-               
-                    
-                    
                     break;
                 case 7:
                     dskh.saveToFile();

@@ -71,14 +71,14 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
         return this.get(id.toUpperCase());
     }
     
-//    public List<Customer> filterByName(String name){
-//     List<Customer> result = new ArrayList<>();
-//        for (Customer i : this.values()) {
-//            if(i.getName().toLowerCase().contains(name.toLowerCase()))
-//                result.add(i);
-//        }
-//        return result;
-//    }
+    public List<Customer> filterByName(String name){
+     List<Customer> result = new ArrayList<>();
+        for (Customer i : this.values()) {
+            if(i.getName().toLowerCase().contains(name.toLowerCase()))
+                result.add(i);
+        }
+        return result;
+    }
     
   
     public void showAll(){
@@ -202,12 +202,12 @@ public class Customers extends HashMap<String , Customer> implements Workable<Cu
     
 
   
-     //Cách 2
+     //Cách 2: tối ưu
     public void searchByName(String name) {
         System.out.println("Result");
         int count = 0;
         for (Customer i : this.values()) {
-            if(i.getName().toLowerCase().contentEquals(name)){
+            if(i.getName().toLowerCase().contains(name.toLowerCase())){
                 System.out.println(i);
                 count ++;
             }
